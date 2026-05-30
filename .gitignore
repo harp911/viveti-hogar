@@ -1,0 +1,5 @@
+node_modules/
+.tempmediaStorage/
+dev-server.js
+.DS_Store
+*.log

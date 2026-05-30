@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Vivéti Hogar — Transformamos el plástico en vida cotidiana. Plásticos de precisión y diseño premium para el orden de tu hogar en Medellín, Colombia.">
+  <title>Vivéti — Hecho para vivir bien</title>
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="lang-es">
+
+  <!-- ==========================================================================
+       SVG DEFINITIONS (REUSABLE VECTOR SYMBOLS)
+       ========================================================================== -->
+  <svg style="display: none;">
+    <!-- Símbolo Vivéti Oficial (Anatomía de 3 Formas) -->
+    <g id="viveti-symbol-paths">
+      <!-- 1. Pilar izquierdo redondeado superior -->
+      <path class="logo-left-dome" d="M 15 80 A 5 5 0 0 0 20 85 H 36 A 5 5 0 0 0 41 80 V 28 A 13 13 0 0 0 15 28 Z" />
+      <!-- 2. Bloque inclinado superior derecho -->
+      <path class="logo-right-tilted" d="M 64 15 H 82 A 4 4 0 0 1 86 19 L 77 37 A 4 4 0 0 1 73 40 H 57 A 4 4 0 0 1 53 36 L 60 18 A 4 4 0 0 1 64 15 Z" />
+      <!-- 3. Círculo inferior derecho -->
+      <circle class="logo-right-circle" cx="68" cy="68" r="15" />
+    </g>
+  </svg>
+
+  <!-- ==========================================================================
+       NAVBAR / HEADER
+       ========================================================================== -->
+  <header class="navbar-header" id="navbar">
+    <div class="navbar-container">
+      <!-- Logo Corporativo -->
+      <a href="#hero" class="brand-logo-container">
+        <svg viewBox="0 0 100 100" style="width: 32px; height: 32px; color: var(--carbon);">
+          <use href="#viveti-symbol-paths"></use>
+        </svg>
+        <span class="brand-logo-text">Vivéti</span>
+      </a>
+
+      <!-- Menú Desktop -->
+      <nav>
+        <ul class="nav-menu">
+          <li>
+            <a href="#hero" class="nav-link active">
+              <span lang="es">Inicio</span>
+              <span lang="en">Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#manifesto" class="nav-link">
+              <span lang="es">Manifiesto</span>
+              <span lang="en">Manifesto</span>
+            </a>
+          </li>
+          <li>
+            <a href="#hogar" class="nav-link">
+              <span lang="es">Colección</span>
+              <span lang="en">Collection</span>
+            </a>
+          </li>
+          <li>
+            <a href="#gallery" class="nav-link">
+              <span lang="es">Galería</span>
+              <span lang="en">Gallery</span>
+            </a>
+          </li>
+          <li>
+            <a href="#why-viveti" class="nav-link">
+              <span lang="es">Filosofía</span>
+              <span lang="en">Philosophy</span>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" class="nav-link">
+              <span lang="es">Contacto</span>
+              <span lang="en">Contact</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Nav Derecha (Boton y Selector Idioma) -->
+      <div class="nav-right">
+        <button class="btn-nav-quote" id="nav-cta-btn">
+          <span lang="es">Solicitar cotización</span>
+          <span lang="en">Request a quote</span>
+        </button>
+        
+        <button class="lang-toggle" id="lang-switcher" aria-label="Toggle language">
+          <span class="lang-es-indicator active">ES</span> | <span class="lang-en-indicator">EN</span>
+        </button>
+
+        <button class="hamburger" id="hamburger-menu" aria-label="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú Móvil Sidebar -->
+  <div class="mobile-overlay" id="mobile-overlay"></div>
+  <aside class="mobile-nav" id="mobile-nav">
+    <ul class="nav-menu">
+      <li>
+        <a href="#hero" class="nav-link mobile-nav-link">
+          <span lang="es">Inicio</span>
+          <span lang="en">Home</span>
+        </a>
+      </li>
+      <li>
+        <a href="#manifesto" class="nav-link mobile-nav-link">
+          <span lang="es">Manifiesto</span>
+          <span lang="en">Manifesto</span>
+        </a>
+      </li>
+      <li>
+        <a href="#hogar" class="nav-link mobile-nav-link">
+          <span lang="es">Colección Hogar</span>
+          <span lang="en">Homecare Collection</span>
+        </a>
+      </li>
+      <li>
+        <a href="#gallery" class="nav-link mobile-nav-link">
+          <span lang="es">Galería</span>
+          <span lang="en">Gallery</span>
+        </a>
+      </li>
+      <li>
+        <a href="#why-viveti" class="nav-link mobile-nav-link">
+          <span lang="es">Filosofía</span>
+          <span lang="en">Philosophy</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact" class="nav-link mobile-nav-link">
+          <span lang="es">Contacto</span>
+          <span lang="en">Contact Us</span>
+        </a>
+      </li>
+      <li style="width: 100%; margin-top: 1.5rem;">
+        <button class="btn-primary-hogar" id="mobile-nav-cta" style="width: 100%;">
+          <span lang="es">Cotizar</span>
+          <span lang="en">Get Quote</span>
+        </button>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- ==========================================================================
+       HERO SECTION (ESTILO VORRATH MINIMALISTA)
+       ========================================================================== -->
+  <section class="hero-section" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <!-- Contenido Hero -->
+        <div class="hero-content" id="hero-content">
+          <h1 class="hero-headline">
+            <span lang="es">Hecho para vivir bien.</span>
+            <span lang="en">Made for living well.</span>
+          </h1>
+          <p class="hero-sub">
+            <span lang="es">Transformamos el plástico en vida cotidiana. Plásticos de precisión y diseño premium para el orden de tu hogar, fabricados con resinas 100% libres de BPA en Medellín, Colombia.</span>
+            <span lang="en">We transform plastic into daily living. Precision plastics and premium design for your home's order, manufactured with 100% BPA-free resins in Medellín, Colombia.</span>
+          </p>
+          <div class="hero-ctas">
+            <a href="#hogar" class="btn-outlined-hogar">
+              <span lang="es">Explorar Colección</span>
+              <span lang="en">Explore Collection</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Visual Hero (Imagen inmersiva + Símbolo sutil de fondo) -->
+        <div class="hero-visual" id="hero-visual">
+          <svg viewBox="0 0 100 100" class="hero-bg-symbol">
+            <use href="#viveti-symbol-paths"></use>
+          </svg>
+          <div class="hero-img-box">
+            <img src="Imagenes/hogar-recipiente.jpeg" alt="Vivéti Recipiente Flagship" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN: MANIFIESTO CONCEPTUAL (ESTILO VORRATH)
+       ========================================================================== -->
+  <section class="manifesto-section" id="manifesto">
+    <div class="manifesto-container">
+      <div class="manifesto-logo">
+        <svg viewBox="0 0 100 100" style="width: 54px; height: 54px; fill: currentColor;">
+          <use href="#viveti-symbol-paths"></use>
+        </svg>
+      </div>
+      <h2 class="manifesto-title">
+        <span lang="es">Transformamos el plástico en vida cotidiana.</span>
+        <span lang="en">We transform plastic into daily living.</span>
+      </h2>
+      <p class="manifesto-lead">
+        <span lang="es">"Hecho para vivir bien." Cada pieza de la colección Vivéti Hogar es inyectada con resinas de alta pureza 100% libres de BPA en Medellín, Colombia. Fusionando la máxima precisión técnica industrial con un diseño minimalista, cálido y funcional concebido para durar toda la vida.</span>
+        <span lang="en">"Made for living well." Every piece of the Vivéti Homecare collection is injection-molded with high-purity, 100% BPA-free resins in Medellín, Colombia. Blending industrial-grade technical precision with a warm, minimalist design conceived to last a lifetime.</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN: VIVÉTI HOGAR
+       ========================================================================== -->
+  <section class="hogar-section" id="hogar">
+    <div class="container">
+      <!-- Cabecera Sección -->
+      <div class="section-header reveal-on-scroll">
+        <div class="section-badge-hogar label-caps">
+          <span lang="es">Línea Hogar</span>
+          <span lang="en">Homecare Line</span>
+        </div>
+        <h2 class="section-headline color-hogar">
+          <span lang="es">"Diseño que simplifica tu día."</span>
+          <span lang="en">"Design that simplifies your day."</span>
+        </h2>
+        <p class="section-desc">
+          <span lang="es">Contenedores, organizadores y utensilios pensados para durar. Sin BPA y sin complicaciones.</span>
+          <span lang="en">Containers, organizers, and utensils built to last. BPA-free and hassle-free.</span>
+        </p>
+      </div>
+
+      <!-- Grid de Productos Hogar (3 Columnas) -->
+      <div class="product-grid">
+        <!-- Producto 1 -->
+        <div class="product-card card-hogar stagger-in">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-organizadores.png" alt="Organizadores Modulares" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Organizadores Modulares</span>
+              <span lang="en">Modular Organizers</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Maximiza el espacio en cajones y armarios. Encaje perfecto, plástico transparente de alta resistencia.</span>
+              <span lang="en">Maximize drawer and closet space. Perfect fit, high-durability crystal-clear plastic.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Stackable</span>
+              <span class="spec-pill">Poliestireno</span>
+              <span class="spec-pill">Clear View</span>
+            </div>
+            <button class="product-cta-btn open-quote-modal-hogar">
+              <span lang="es">Consultar línea</span>
+              <span lang="en">Inquire Line</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Producto 2 -->
+        <div class="product-card card-hogar stagger-in">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-recipiente.jpeg" alt="Contenedores Apilables" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Contenedores Apilables</span>
+              <span lang="en">Stackable Food Containers</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Conservación hermética para despensa o nevera. Tapas con sellado premium y pestañas ergonómicas.</span>
+              <span lang="en">Airtight storage for pantry or fridge. Lids with premium sealing and ergonomic tabs.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Airtight</span>
+              <span class="spec-pill">Polipropileno</span>
+              <span class="spec-pill">Microwave Safe</span>
+            </div>
+            <button class="product-cta-btn open-quote-modal-hogar">
+              <span lang="es">Consultar línea</span>
+              <span lang="en">Inquire Line</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Producto 3 -->
+        <div class="product-card card-hogar stagger-in">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-utensilios.png" alt="Utensilios de Cocina" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Utensilios de Cocina</span>
+              <span lang="en">Kitchen Utensils</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Herramientas culinarias que no rayan tus ollas. Alta resistencia térmica y mango ergonómico soft-grip.</span>
+              <span lang="en">Culinary tools that won't scratch your cookware. High thermal resistance and ergonomic soft-grip handle.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Nylon Grado</span>
+              <span class="spec-pill">Up to 210°C</span>
+              <span class="spec-pill">Soft Touch</span>
+            </div>
+            <button class="product-cta-btn open-quote-modal-hogar">
+              <span lang="es">Consultar línea</span>
+              <span lang="en">Inquire Line</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-footer-cta reveal-on-scroll">
+        <button class="btn-primary-hogar" id="hogar-gallery-filter-trigger">
+          <span lang="es">Ver catálogo completo Hogar</span>
+          <span lang="en">See Full Homecare Catalog</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- ==========================================================================
+       SECCIÓN: GALERÍA DE COLECCIÓN HOGAR (PURA)
+       ========================================================================== -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <!-- Cabecera de Galería (Minimalista) -->
+      <div class="gallery-header reveal-on-scroll">
+        <div class="gallery-title-box" style="text-align: center; margin: 0 auto; max-width: 700px;">
+          <h2 class="section-headline">
+            <span lang="es">Colección en Detalle</span>
+            <span lang="en">Collection in Detail</span>
+          </h2>
+          <p class="section-desc">
+            <span lang="es">Explora nuestro portafolio de piezas inyectadas de precisión, diseñadas para brindar orden, armonía y sofisticación a tu espacio.</span>
+            <span lang="en">Explore our portfolio of precision injection-molded pieces, designed to bring order, harmony, and sophistication to your space.</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Grid de Galería Dinámica (3 Items Puros de Hogar) -->
+      <div class="gallery-grid" id="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+        <!-- Item 1: Organizadores -->
+        <div class="gallery-item product-card card-hogar stagger-in" data-category="hogar">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-organizadores.png" alt="Organizador de Cajones" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Organizador de Cajones</span>
+              <span lang="en">Drawer Organizer</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Módulos acoplables de esquinas redondeadas. Solución transparente ideal para cubiertos, tocador o escritorio.</span>
+              <span lang="en">Interlocking modules with rounded corners. Crystal-clear solution ideal for cutlery, vanity, or desk.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Modular</span>
+              <span class="spec-pill">Slim-fit</span>
+              <span class="spec-pill">BPA Free</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2: Contenedores -->
+        <div class="gallery-item product-card card-hogar stagger-in" data-category="hogar">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-recipiente.jpeg" alt="Contenedor Hermético 1.5L" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Contenedor Hermético 1.5L</span>
+              <span lang="en">Airtight Food Container 1.5L</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Perfecto para almacenar granos, cereales o alimentos frescos. Sistema de sellado perimetral con bloqueo ergonómico.</span>
+              <span lang="en">Perfect for storing dry grains, cereals, or fresh food. Perimeter latching system with ergonomic lock.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Airtight</span>
+              <span class="spec-pill">PP Food Grade</span>
+              <span class="spec-pill">Microwave Safe</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3: Utensilios -->
+        <div class="gallery-item product-card card-hogar stagger-in" data-category="hogar">
+          <div class="product-img-box bg-hogar">
+            <img src="Imagenes/hogar-utensilios.png" alt="Escurridor de Platos Compacto" class="product-card-img" />
+            <span class="card-badge badge-hogar label-caps">BPA Free</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">
+              <span lang="es">Escurridor de Platos Compacto</span>
+              <span lang="en">Compact Dish Rack</span>
+            </h3>
+            <p class="product-desc">
+              <span lang="es">Estructura moderna y compacta para cocinas urbanas. Cuenta con desagüe directo al fregadero y portacubiertos extraíble.</span>
+              <span lang="en">Modern and compact structure for urban kitchens. Features direct drain-off spout to the sink and removable cutlery holder.</span>
+            </p>
+            <div class="product-meta-specs">
+              <span class="spec-pill">Dry-Flow</span>
+              <span class="spec-pill">High Heat Resistant</span>
+              <span class="spec-pill">Soft Touch</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botón de Descarga Catálogo (Lead Magnet) -->
+      <div class="section-footer-cta reveal-on-scroll" style="margin-top: 4.5rem;">
+        <button class="btn-primary-hogar" id="download-catalog-btn" style="background-color: var(--carbon); border-color: var(--carbon); display: inline-flex; align-items: center; gap: 0.75rem;">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 0.25rem;">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span lang="es">Descargar catálogo completo PDF</span>
+          <span lang="en">Download Complete PDF Catalog</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN: ¿POR QUÉ VIVÉTI? (GRID EN CARBONO)
+       ========================================================================== -->
+  <section class="why-section" id="why-viveti">
+    <div class="container">
+      <div class="why-grid">
+        <!-- Izquierda: Titulares de Marca -->
+        <div class="why-content reveal-on-scroll">
+          <div class="why-title-caps label-caps">
+            <span lang="es">Ingeniería en plástico</span>
+            <span lang="en">Plastic engineering</span>
+          </div>
+          <h2 class="why-headline">
+            <span lang="es">"Precisión de origen. Diseño con propósito."</span>
+            <span lang="en">"Precision by design. Purpose in every piece."</span>
+          </h2>
+          <p style="color: #A2B0A8; font-size: 1.125rem; max-width: 440px;">
+            <span lang="es">Transformamos el plástico en vida cotidiana — con precisión para quien cuida, con diseño para quien vive.</span>
+            <span lang="en">We transform plastics into everyday life — with precision for those who care, with design for those who live.</span>
+          </p>
+        </div>
+
+        <!-- Derecha: Grid 2x2 de Pilares de Valor (Iconos alternados) -->
+        <div class="why-grid-pillars reveal-on-scroll">
+          <!-- Pilar 1 (Verde) -->
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                <polyline points="22 4 12 14.01 9 11.01"/>
+              </svg>
+            </div>
+            <h3 class="pillar-title">
+              <span lang="es">Confianza construida</span>
+              <span lang="en">Built Trust</span>
+            </h3>
+            <p class="pillar-desc">
+              <span lang="es">Cada producto cumple estrictamente lo que promete en durabilidad e inocuidad.</span>
+              <span lang="en">Every product strictly delivers what it promises in durability and safety.</span>
+            </p>
+          </div>
+
+          <!-- Pilar 2 (Azul) -->
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M12 8v8"/>
+                <path d="M8 12h8"/>
+              </svg>
+            </div>
+            <h3 class="pillar-title">
+              <span lang="es">Precisión de origen</span>
+              <span lang="en">Origin Precision</span>
+            </h3>
+            <p class="pillar-desc">
+              <span lang="es">Ingeniería exacta desde el desarrollo del molde de inyección. Cero defectos.</span>
+              <span lang="en">Exact engineering right from the injection mold design. Zero defects.</span>
+            </p>
+          </div>
+
+          <!-- Pilar 3 (Verde) -->
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                <polyline points="2 17 12 22 22 17"/>
+                <polyline points="2 12 12 17 22 12"/>
+              </svg>
+            </div>
+            <h3 class="pillar-title">
+              <span lang="es">Diseño con propósito</span>
+              <span lang="en">Purposeful Design</span>
+            </h3>
+            <p class="pillar-desc">
+              <span lang="es">Lo estético es la forma correcta en que el producto cumple su función diaria.</span>
+              <span lang="en">Aesthetics is simply the correct way a product fulfills its daily function.</span>
+            </p>
+          </div>
+
+          <!-- Pilar 4 (Azul) -->
+          <div class="pillar-card">
+            <div class="pillar-icon-box">
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="pillar-title">
+              <span lang="es">Futuro responsable</span>
+              <span lang="en">Responsible Future</span>
+            </h3>
+            <p class="pillar-desc">
+              <span lang="es">Sostenibilidad real como camino industrial continuo, no como reclamo publicitario.</span>
+              <span lang="en">Real sustainability as an ongoing industrial path, not just a marketing claim.</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECCIÓN: CONTACTO Y COTIZACIÓN B2B (SPLIT LAYOUT)
+       ========================================================================== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div class="contact-card-box">
+        <!-- Lado Izquierdo: Información (Verde Profundo) -->
+        <div class="contact-info-panel">
+          <div class="info-panel-top">
+            <!-- Logo Blanco -->
+            <div class="brand-logo-container" style="color: var(--blanco);">
+              <svg viewBox="0 0 100 100" style="width: 40px; height: 40px;">
+                <use href="#viveti-symbol-paths"></use>
+              </svg>
+              <span class="brand-logo-text" style="color: var(--blanco);">Vivéti</span>
+            </div>
+            
+            <p class="info-panel-text">
+              <span lang="es">¿Eres distribuidor, comprador de grandes superficies o tienda de diseño? Escríbenos — te responderemos en menos de 24 horas hábiles.</span>
+              <span lang="en">Are you a retail store buyer, wholesale distributor, or design boutique? Message us — we will reply in under 24 business hours.</span>
+            </p>
+
+            <!-- Datos de Contacto Directo -->
+            <div class="contact-details">
+              <div class="contact-detail-item">
+                <div class="detail-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div class="detail-text">
+                  <h5>
+                    <span lang="es">Ubicación</span>
+                    <span lang="en">Location</span>
+                  </h5>
+                  <p>Medellín, Colombia</p>
+                </div>
+              </div>
+
+              <div class="contact-detail-item">
+                <div class="detail-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div class="detail-text">
+                  <h5>
+                    <span lang="es">Correo Electrónico</span>
+                    <span lang="en">Email</span>
+                  </h5>
+                  <p>contacto@viveti.co</p>
+                </div>
+              </div>
+
+              <div class="contact-detail-item">
+                <div class="detail-icon-circle">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                    <line x1="12" y1="18" x2="12.01" y2="18"/>
+                  </svg>
+                </div>
+                <div class="detail-text">
+                  <h5>
+                    <span lang="es">Teléfono / WhatsApp</span>
+                    <span lang="en">Phone / WhatsApp</span>
+                  </h5>
+                  <p>+57 300 000 0000</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-panel-footer">
+            <span lang="es">Vivéti — Fabricación colombiana con calidad e ingeniería de exportación.</span>
+            <span lang="en">Vivéti — Colombian manufacturing with export-grade quality and engineering.</span>
+          </div>
+        </div>
+
+        <!-- Lado Derecho: Formulario (Blanco) -->
+        <div class="contact-form-panel">
+          <h3 class="form-title">
+            <span lang="es">Solicitar Cotización</span>
+            <span lang="en">Request a Quote</span>
+          </h3>
+          <p class="form-subtitle">
+            <span lang="es">Completa el formulario y un asesor comercial se pondrá en contacto a la brevedad.</span>
+            <span lang="en">Fill out the form and a sales advisor will get in touch shortly.</span>
+          </p>
+
+          <!-- Formulario de Contacto Real-Time Validated -->
+          <form class="quote-form" id="quote-b2b-form" novalidate>
+            <!-- Nombre y Empresa -->
+            <div class="form-group-row">
+              <div class="form-field">
+                <label class="form-label" for="full-name">
+                  <span lang="es">Nombre Completo *</span>
+                  <span lang="en">Full Name *</span>
+                </label>
+                <input class="form-input" type="text" id="full-name" required placeholder="Ej. Juan Pérez">
+                <span class="inline-error">
+                  <span lang="es">Por favor ingresa tu nombre completo.</span>
+                  <span lang="en">Please enter your full name.</span>
+                </span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="company-name">
+                  <span lang="es">Empresa *</span>
+                  <span lang="en">Company *</span>
+                </label>
+                <input class="form-input" type="text" id="company-name" required placeholder="Ej. Distribuidora del Norte S.A.S.">
+                <span class="inline-error">
+                  <span lang="es">Por favor ingresa el nombre de tu empresa.</span>
+                  <span lang="en">Please enter your company name.</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Correo Electrónico y Teléfono -->
+            <div class="form-group-row">
+              <div class="form-field">
+                <label class="form-label" for="form-email">
+                  <span lang="es">Correo Electrónico *</span>
+                  <span lang="en">Email Address *</span>
+                </label>
+                <input class="form-input" type="email" id="form-email" required placeholder="juan@empresa.com">
+                <span class="inline-error">
+                  <span lang="es">Por favor ingresa un correo válido.</span>
+                  <span lang="en">Please enter a valid email address.</span>
+                </span>
+              </div>
+
+              <div class="form-field">
+                <label class="form-label" for="client-type">
+                  <span lang="es">Tipo de Cliente *</span>
+                  <span lang="en">Client Type *</span>
+                </label>
+                <select class="form-select" id="client-type" required>
+                  <option value="" disabled selected>
+                    <span lang="es">Seleccionar...</span>
+                    <span lang="en">Select option...</span>
+                  </option>
+                  <option value="distribuidor">
+                    <span lang="es">Distribuidor Mayorista</span>
+                    <span lang="en">Wholesale Distributor</span>
+                  </option>
+                  <option value="supermercado">
+                    <span lang="es">Supermercado / Cadena</span>
+                    <span lang="en">Supermarket / Retail Chain</span>
+                  </option>
+                  <option value="tienda-hogar">
+                    <span lang="es">Tienda de Diseño / Hogar</span>
+                    <span lang="en">Design / Home Store</span>
+                  </option>
+                  <option value="otro">
+                    <span lang="es">Otro Comprador Institucional</span>
+                    <span lang="en">Other Institutional Buyer</span>
+                  </option>
+                </select>
+                <span class="inline-error">
+                  <span lang="es">Por favor selecciona una categoría.</span>
+                  <span lang="en">Please select a category.</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Mensaje / Descripción -->
+            <div class="form-field">
+              <label class="form-label" for="form-message">
+                <span lang="es">Mensaje / Descripción de Necesidad</span>
+                <span lang="en">Message / Custom Requirements</span>
+              </label>
+              <textarea class="form-textarea" id="form-message" rows="4" placeholder="Ej. Solicito cotización para 1,000 unidades de Organizador de Cajones para mi cadena de tiendas..."></textarea>
+            </div>
+
+            <!-- Checkbox Lead Magnet -->
+            <div class="form-field">
+              <label class="form-checkbox-label">
+                <input type="checkbox" id="send-catalog-check" checked>
+                <span>
+                  <span lang="es">Deseo recibir el catálogo PDF completo por correo electrónico automáticamente.</span>
+                  <span lang="en">I want to receive the complete PDF catalog by email automatically.</span>
+                </span>
+              </label>
+            </div>
+
+            <!-- Botón Submit -->
+            <button class="btn-submit-quote" type="submit" id="submit-form-btn">
+              <span lang="es">Enviar solicitud</span>
+              <span lang="en">Send Inquiry</span>
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" style="margin-right: 0.25rem;">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <!-- Columna 1: Brand e Identidad -->
+        <div class="footer-brand">
+          <div class="brand-logo-container" style="color: var(--blanco);">
+            <svg viewBox="0 0 100 100" style="width: 32px; height: 32px;">
+              <use href="#viveti-symbol-paths"></use>
+            </svg>
+            <span class="brand-logo-text" style="color: var(--blanco);">Vivéti</span>
+          </div>
+          
+          <!-- Tagline en Garamond Italic -->
+          <div class="footer-tagline">"Hecho para vivir bien."</div>
+          
+          <p class="footer-brand-p">
+            <span lang="es">Fabricado localmente en Medellín, Colombia con ingeniería precisa y materiales certificados globales.</span>
+            <span lang="en">Manufactured locally in Medellín, Colombia with precise engineering and certified global materials.</span>
+          </p>
+        </div>
+
+        <!-- Columna 2: Productos -->
+        <div class="footer-col">
+          <h4>
+            <span lang="es">Productos</span>
+            <span lang="en">Products</span>
+          </h4>
+          <ul class="footer-links">
+            <li>
+              <a href="#hogar" class="footer-link">
+                <span lang="es">Organizadores Modulares</span>
+                <span lang="en">Modular Organizers</span>
+              </a>
+            </li>
+            <li>
+              <a href="#hogar" class="footer-link">
+                <span lang="es">Contenedores Herméticos</span>
+                <span lang="en">Airtight Containers</span>
+              </a>
+            </li>
+            <li>
+              <a href="#hogar" class="footer-link">
+                <span lang="es">Utensilios de Cocina</span>
+                <span lang="en">Kitchen Utensils</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Empresa -->
+        <div class="footer-col">
+          <h4>
+            <span lang="es">Empresa</span>
+            <span lang="en">Company</span>
+          </h4>
+          <ul class="footer-links">
+            <li>
+              <a href="#why-viveti" class="footer-link">
+                <span lang="es">¿Por qué Vivéti?</span>
+                <span lang="en">Why Vivéti?</span>
+              </a>
+            </li>
+            <li>
+              <a href="#hero" class="footer-link">
+                <span lang="es">Símbolos e Identidad</span>
+                <span lang="en">Identity & Symbols</span>
+              </a>
+            </li>
+            <li>
+              <a href="#contact" class="footer-link">
+                <span lang="es">Contacto B2B</span>
+                <span lang="en">B2B Contact</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Columna 4: Filosofía -->
+        <div class="footer-col">
+          <h4>
+            <span lang="es">Filosofía</span>
+            <span lang="en">Philosophy</span>
+          </h4>
+          <div class="footer-badge-list">
+            <div class="footer-badge hogar">
+              <svg viewBox="0 0 100 100" style="width: 14px; height: 14px; color: var(--verde-sage);">
+                <use href="#viveti-symbol-paths"></use>
+              </svg>
+              <span>Vivéti Hogar</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila de Cierre y Créditos -->
+      <div class="footer-bottom">
+        <div class="footer-credits">
+          <span lang="es">© 2026 Vivéti S.A.S. Todos los derechos reservados. Fabricado en Colombia.</span>
+          <span lang="en">© 2026 Vivéti S.A.S. All rights reserved. Manufactured in Colombia.</span>
+        </div>
+
+        <ul class="footer-legal-links">
+          <li>
+            <a href="#" class="footer-legal-link">
+              <span lang="es">Política de privacidad</span>
+              <span lang="en">Privacy Policy</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="footer-legal-link">
+              <span lang="es">Términos de uso</span>
+              <span lang="en">Terms of Use</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       INTERACTIVE WIDGETS (WHATSAPP FLOTANTE Y CAPTURA MODAL)
+       ========================================================================== -->
+  <!-- WhatsApp Flotante Widget -->
+  <div class="whatsapp-widget" id="whatsapp-trigger" aria-label="Chat on WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.455L0 24zm6.59-4.846c1.62.962 3.21 1.487 4.982 1.488 5.489 0 9.957-4.464 9.96-9.953.003-2.66-1.029-5.161-2.907-7.04C16.804 1.77 14.307.74 11.66.737c-5.495 0-9.96 4.465-9.963 9.957-.001 1.888.497 3.548 1.458 5.166l-.99 3.613 3.693-.979z"/>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004z"/>
+    </svg>
+  </div>
+
+  <!-- Modal Captura Lead Catálogo PDF / Éxito de Cotización -->
+  <div class="modal-overlay" id="lead-modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="modal-close-trigger" aria-label="Close modal">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <div class="modal-body">
+        <!-- Icono Éxito -->
+        <div class="modal-success-icon">
+          <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="3">
+            <polyline points="20 6 9 17 4 12"/>
+          </svg>
+        </div>
+
+        <h3 class="modal-title">
+          <span lang="es">¡Solicitud Procesada!</span>
+          <span lang="en">Inquiry Processed!</span>
+        </h3>
+
+        <!-- Mensaje Dinámico vía JS -->
+        <p class="modal-text" id="modal-dynamic-text">
+          <span lang="es">Hemos recibido tus datos con éxito. Tu catálogo Vivéti 2025 se descargará automáticamente en unos segundos. Un asesor comercial te contactará a la brevedad.</span>
+          <span lang="en">We have successfully received your details. Your Vivéti 2025 catalog will download automatically in a few seconds. A sales advisor will contact you shortly.</span>
+        </p>
+
+        <!-- Botón de Cierre -->
+        <button class="btn-primary-hogar" id="modal-confirm-btn" style="background-color: var(--carbon); border-color: var(--carbon); width: 100%;">
+          <span lang="es">Aceptar</span>
+          <span lang="en">Got it</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
