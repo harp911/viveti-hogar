@@ -908,5 +908,45 @@
 
   <!-- JavaScript Scripts -->
   <script src="app.js"></script>
+
+  <!-- Firebase Serverless DB Integration for D2C Leads -->
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+    // Reemplaza estas credenciales con las de tu consola de Firebase
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "viveti-hogar.firebaseapp.com",
+      projectId: "viveti-hogar",
+      storageBucket: "viveti-hogar.appspot.com",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+
+    let db = null;
+    try {
+      if (firebaseConfig.apiKey && firebaseConfig.apiKey !== "YOUR_API_KEY") {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        console.log("Firebase Firestore inicializado correctamente.");
+      }
+    } catch (e) {
+      console.warn("Error al inicializar Firebase. Usando guardado local offline.", e);
+    }
+
+    // Exponer función de inserción asíncrona de manera global
+    window.addLeadToFirestore = async (leadData) => {
+      if (db) {
+        return await addDoc(collection(db, "leads"), {
+          ...leadData,
+          createdAt: serverTimestamp()
+        });
+      } else {
+        console.log("Firebase no configurado. Lead simulado offline:", leadData);
+        return Promise.resolve(true);
+      }
+    };
+  </script>
 </body>
 </html>

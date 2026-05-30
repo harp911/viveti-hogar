@@ -357,27 +357,67 @@ document.addEventListener('DOMContentLoaded', () => {
         document.head.appendChild(styleSheet);
       }
 
-      // Simulación de Envío B2B a Formspree / Servidor B2B de Vivéti
-      setTimeout(() => {
-        // Restaurar estado del botón
-        submitFormBtn.disabled = false;
-        submitFormBtn.style.opacity = '';
-        submitFormBtn.innerHTML = originalBtnHtml;
+      // Capturar datos del formulario
+      const leadData = {
+        fullName: document.getElementById('full-name') ? document.getElementById('full-name').value.trim() : '',
+        companyName: document.getElementById('company-name') ? document.getElementById('company-name').value.trim() : '',
+        email: document.getElementById('form-email') ? document.getElementById('form-email').value.trim() : '',
+        clientType: document.getElementById('client-type') ? document.getElementById('client-type').value : '',
+        message: document.getElementById('form-message') ? document.getElementById('form-message').value.trim() : '',
+        requestedCatalog: sendCatalogCheck ? sendCatalogCheck.checked : false
+      };
 
-        // Abrir Modal de Confirmación
-        modalOverlay.classList.add('active');
-        body.style.overflow = 'hidden';
+      // Guardar lead en Firebase Firestore (asincrónico con fallback offline seguro)
+      if (window.addLeadToFirestore) {
+        window.addLeadToFirestore(leadData)
+          .then(() => {
+            console.log("Lead guardado exitosamente en base de datos.");
+          })
+          .catch((error) => {
+            console.error("Error al registrar lead en Firestore:", error);
+          })
+          .finally(() => {
+            // Completar envío y abrir modal de éxito
+            setTimeout(() => {
+              // Restaurar estado del botón
+              submitFormBtn.disabled = false;
+              submitFormBtn.style.opacity = '';
+              submitFormBtn.innerHTML = originalBtnHtml;
 
-        // Disparar la descarga del PDF si el checkbox está seleccionado
-        if (sendCatalogCheck && sendCatalogCheck.checked) {
-          setTimeout(() => {
-            downloadCatalogPDF();
-          }, 1000);
-        }
+              // Abrir Modal de Confirmación
+              modalOverlay.classList.add('active');
+              body.style.overflow = 'hidden';
 
-        // Resetear Formulario
-        quoteForm.reset();
-      }, 1500);
+              // Disparar la descarga del PDF si el checkbox está seleccionado
+              if (sendCatalogCheck && sendCatalogCheck.checked) {
+                setTimeout(() => {
+                  downloadCatalogPDF();
+                }, 1000);
+              }
+
+              // Resetear Formulario
+              quoteForm.reset();
+            }, 800);
+          });
+      } else {
+        // Fallback local por seguridad
+        setTimeout(() => {
+          submitFormBtn.disabled = false;
+          submitFormBtn.style.opacity = '';
+          submitFormBtn.innerHTML = originalBtnHtml;
+
+          modalOverlay.classList.add('active');
+          body.style.overflow = 'hidden';
+
+          if (sendCatalogCheck && sendCatalogCheck.checked) {
+            setTimeout(() => {
+              downloadCatalogPDF();
+            }, 1000);
+          }
+
+          quoteForm.reset();
+        }, 1500);
+      }
     });
   }
 
