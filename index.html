@@ -317,6 +317,127 @@
     </div>
   </section>
 
+  <!-- ==========================================================================
+       SECCIÓN INTERACTIVA: ESTUDIO DE COLOR (PRODUCT CUSTOMIZER)
+       ========================================================================== -->
+  <section class="color-study-section" id="color-study">
+    <div class="container">
+      <div class="color-study-grid">
+        
+        <!-- Columna Izquierda: Visualizador Canvas de Ultra-Lujo -->
+        <div class="color-study-visual reveal-on-scroll">
+          <div class="visual-canvas-container">
+            <!-- Imagen original oculta como fuente de píxeles -->
+            <img id="source-product-img" src="Imagenes/hogar-recipiente.jpeg" alt="Vivéti Recipiente" style="display: none;" />
+            <!-- Canvas donde se dibuja y recolorea en tiempo real -->
+            <canvas id="product-color-canvas" width="800" height="500"></canvas>
+            
+            <!-- Indicador de color activo flotante -->
+            <div class="active-color-badge">
+              <span class="color-badge-dot" id="active-color-dot" style="background-color: #2D7F79;"></span>
+              <span id="active-color-name" class="font-italic">Verde menta</span>
+            </div>
+            
+            <!-- Cargando Loader de transición -->
+            <div class="canvas-loader" id="canvas-loader">
+              <div class="loader-spinner"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Controles y Paletas Editoriales -->
+        <div class="color-study-info reveal-on-scroll">
+          <div class="color-study-header">
+            <span class="color-study-badge label-caps">Estudio de Color</span>
+            <h2 class="color-study-headline">
+              <span lang="es">Personaliza tu armonía.</span>
+              <span lang="en">Personalize your harmony.</span>
+            </h2>
+            <p class="color-study-desc">
+              <span lang="es">El orden no tiene por qué ser monótono. Selecciona un color de nuestra paleta pastel y observa cómo se transforma el sistema de cierres herméticos de tu recipiente. Diseñado para coordinar con la estética de tu cocina.</span>
+              <span lang="en">Order doesn't have to be monotonous. Select a color from our pastel palette and see how the airtight sealing system of your container transforms. Designed to coordinate with your kitchen's aesthetics.</span>
+            </p>
+          </div>
+
+          <!-- Paleta de Colores Pasteles Interactiva -->
+          <div class="color-palette-box">
+            <h4 class="palette-title label-caps">
+              <span lang="es">Muestras de color</span>
+              <span lang="en">Color samples</span>
+            </h4>
+            <div class="color-selector-grid">
+              
+              <!-- Color 1: Verde Menta (Por Defecto) -->
+              <button class="color-swatch-btn active" data-color="#2D7F79" data-name-es="Verde menta" data-name-en="Mint Green" style="--swatch-color: #2D7F79;" aria-label="Verde Menta">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Verde menta</span>
+                  <span lang="en">Mint Green</span>
+                </span>
+              </button>
+
+              <!-- Color 2: Salmón Pastel -->
+              <button class="color-swatch-btn" data-color="#E8B0A5" data-name-es="Salmón pastel" data-name-en="Pastel Salmon" style="--swatch-color: #E8B0A5;" aria-label="Salmón Pastel">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Salmón pastel</span>
+                  <span lang="en">Pastel Salmon</span>
+                </span>
+              </button>
+
+              <!-- Color 3: Azul Cielo -->
+              <button class="color-swatch-btn" data-color="#B8DDF2" data-name-es="Azul cielo" data-name-en="Sky Blue" style="--swatch-color: #B8DDF2;" aria-label="Azul Cielo">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Azul cielo</span>
+                  <span lang="en">Sky Blue</span>
+                </span>
+              </button>
+
+              <!-- Color 4: Beige Nude -->
+              <button class="color-swatch-btn" data-color="#D9C9BE" data-name-es="Beige nude" data-name-en="Nude Beige" style="--swatch-color: #D9C9BE;" aria-label="Beige Nude">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Beige nude</span>
+                  <span lang="en">Nude Beige</span>
+                </span>
+              </button>
+
+              <!-- Color 5: Amarillo Pastel -->
+              <button class="color-swatch-btn" data-color="#D7CC67" data-name-es="Amarillo pastel" data-name-en="Pastel Yellow" style="--swatch-color: #D7CC67;" aria-label="Amarillo Pastel">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Amarillo pastel</span>
+                  <span lang="en">Pastel Yellow</span>
+                </span>
+              </button>
+
+              <!-- Color 6: Rosa Pastel -->
+              <button class="color-swatch-btn" data-color="#DFAAB8" data-name-es="Rosa pastel" data-name-en="Pastel Pink" style="--swatch-color: #DFAAB8;" aria-label="Rosa Pastel">
+                <span class="swatch-circle"></span>
+                <span class="swatch-label">
+                  <span lang="es">Rosa pastel</span>
+                  <span lang="en">Pastel Pink</span>
+                </span>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Acción -->
+          <div class="color-study-cta-box">
+            <button class="btn-primary-hogar open-quote-modal-hogar" id="color-study-inquire-btn">
+              <span lang="es">Solicitar esta combinación</span>
+              <span lang="en">Inquire this combination</span>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
 
 
   <!-- ==========================================================================

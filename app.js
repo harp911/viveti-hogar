@@ -447,6 +447,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // ==========================================================================
   // 7. WIDGET DE WHATSAPP FLOTANTE CONFIGURABLE
   // ==========================================================================
+  // ==========================================================================
+  // 7. WIDGET DE WHATSAPP FLOTANTE CONFIGURABLE
+  // ==========================================================================
   const whatsappTrigger = document.getElementById('whatsapp-trigger');
   
   if (whatsappTrigger) {
@@ -463,5 +466,214 @@ document.addEventListener('DOMContentLoaded', () => {
       
       window.open(whatsappUrl, '_blank');
     });
+  }
+
+  // ==========================================================================
+  // 8. ESTUDIO DE COLOR (INTERACTIVE PRODUCT CONFIGURATOR BY CANVAS)
+  // ==========================================================================
+  const sourceImg = document.getElementById('source-product-img');
+  const colorCanvas = document.getElementById('product-color-canvas');
+  const activeColorDot = document.getElementById('active-color-dot');
+  const activeColorName = document.getElementById('active-color-name');
+  const canvasLoader = document.getElementById('canvas-loader');
+  const swatchButtons = document.querySelectorAll('.color-swatch-btn');
+  const colorInquireBtn = document.getElementById('color-study-inquire-btn');
+
+  if (colorCanvas && sourceImg) {
+    const ctx = colorCanvas.getContext('2d');
+    let originalImageData = null;
+
+    // Utilidades de Conversión de Color
+    function hexToRgb(hex) {
+      const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+      return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+      } : null;
+    }
+
+    function rgbToHsl(r, g, b) {
+      r /= 255; g /= 255; b /= 255;
+      const max = Math.max(r, g, b), min = Math.min(r, g, b);
+      let h, s, l = (max + min) / 2;
+
+      if (max === min) {
+        h = s = 0; // achromatic
+      } else {
+        const d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+      }
+      return [h * 360, s * 100, l * 100];
+    }
+
+    function hslToRgb(h, s, l) {
+      h /= 360; s /= 100; l /= 100;
+      let r, g, b;
+
+      if (s === 0) {
+        r = g = b = l; // achromatic
+      } else {
+        const hue2rgb = (p, q, t) => {
+          if (t < 0) t += 1;
+          if (t > 1) t -= 1;
+          if (t < 1/6) return p + (q - p) * 6 * t;
+          if (t < 1/2) return q;
+          if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+          return p;
+        };
+
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+      }
+      return [Math.round(r * 255), Math.round(g * 255), Math.round(b * 255)];
+    }
+
+    // Inicializar y cargar imagen en Canvas
+    function initCanvas() {
+      // Ajustar dimensiones del Canvas a las reales de la imagen
+      colorCanvas.width = sourceImg.naturalWidth || 1000;
+      colorCanvas.height = sourceImg.naturalHeight || 625;
+      
+      // Dibujar imagen original
+      ctx.drawImage(sourceImg, 0, 0, colorCanvas.width, colorCanvas.height);
+      
+      // Guardar píxeles originales intactos en memoria
+      originalImageData = ctx.getImageData(0, 0, colorCanvas.width, colorCanvas.height);
+      
+      // Aplicar color inicial (Verde menta)
+      applyColorRecolor("#2D7F79");
+    }
+
+    // Algoritmo de Recoloreado Inteligente por HSL
+    function applyColorRecolor(targetHex) {
+      if (!originalImageData) return;
+
+      const targetRgb = hexToRgb(targetHex);
+      if (!targetRgb) return;
+      const [targetH, targetS, targetL] = rgbToHsl(targetRgb.r, targetRgb.g, targetRgb.b);
+
+      // Crear un buffer de píxeles nuevo desde el original para no perder fidelidad
+      const resultImageData = ctx.createImageData(originalImageData);
+      resultImageData.data.set(originalImageData.data);
+      const data = resultImageData.data;
+
+      const width = colorCanvas.width;
+      const height = colorCanvas.height;
+
+      // Límites espaciales para proteger la comida del fondo (espárragos, papas, etc.)
+      const limitY = Math.round(height * 0.54); 
+
+      for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+          // Filtrado espacial: Solo procesamos la tapa superior, válvula y los clips laterales
+          // El clip izquierdo se extiende un poco más abajo en y, el clip derecho también
+          const isLeftClip = (x < width * 0.17 && y < height * 0.38);
+          const isRightClip = (x > width * 0.83 && y < height * 0.48);
+          const isTopSection = (y < limitY);
+
+          if (isTopSection || isLeftClip || isRightClip) {
+            const idx = (width * y + x) << 2;
+            const r = data[idx];
+            const g = data[idx + 1];
+            const b = data[idx + 2];
+
+            const [h, s, l] = rgbToHsl(r, g, b);
+
+            // RANGO DE COLOR VERDE SAGE (Lid y clips originales del recipiente)
+            // Evaluamos tonos verdes y verde-grisáceos desaturados
+            const isGreenSage = (h >= 62 && h <= 158) && (s >= 3.5 && s <= 44) && (l >= 18 && l <= 85);
+
+            if (isGreenSage) {
+              // Calcular nueva saturación adaptada (preserva sombras profundas y degradados)
+              const factorS = s / 28; // 28% es la saturación promedio del sage original
+              let newS = targetS * factorS;
+              if (newS > 100) newS = 100;
+              
+              // Mantener la luminosidad original del píxel para preservar reflejos, luces y sombras
+              const newL = l; 
+
+              const [newR, newG, newB] = hslToRgb(targetH, newS, newL);
+              
+              data[idx] = newR;
+              data[idx + 1] = newG;
+              data[idx + 2] = newB;
+            }
+          }
+        }
+      }
+
+      // Dibujar imagen recoloreada
+      ctx.putImageData(resultImageData, 0, 0);
+    }
+
+    // Manejar clics en muestras de color
+    swatchButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+
+        // Activar botón en el DOM
+        swatchButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const colorHex = btn.getAttribute('data-color');
+        const colorNameEs = btn.getAttribute('data-name-es');
+        const colorNameEn = btn.getAttribute('data-name-en');
+
+        // Mostrar loader
+        if (canvasLoader) canvasLoader.classList.add('active');
+
+        // Procesar recoloreado con un leve delay para simular renderizado de alta tecnología
+        setTimeout(() => {
+          applyColorRecolor(colorHex);
+
+          // Actualizar etiquetas del color activo
+          if (activeColorDot) activeColorDot.style.background = colorHex;
+          if (activeColorName) {
+            const isEn = body.classList.contains('lang-en');
+            activeColorName.textContent = isEn ? colorNameEn : colorNameEs;
+          }
+
+          // Ocultar loader
+          if (canvasLoader) canvasLoader.classList.remove('active');
+        }, 300);
+      });
+    });
+
+    // Acción del botón Cotizar Combinación
+    if (colorInquireBtn) {
+      colorInquireBtn.addEventListener('click', () => {
+        const activeSwatch = document.querySelector('.color-swatch-btn.active');
+        if (activeSwatch) {
+          const colorName = activeSwatch.getAttribute('data-name-es');
+          const messageTextarea = document.getElementById('form-message');
+          if (messageTextarea) {
+            messageTextarea.value = `Hola Vivéti, deseo recibir información y una cotización técnica para el recipiente hermético con la combinación de color: ${colorName}.`;
+          }
+          
+          // Desplazarse al formulario de contacto
+          const contactSection = document.getElementById('contact');
+          if (contactSection) {
+            contactSection.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    }
+
+    // Inicializar cuando la imagen cargue completamente
+    if (sourceImg.complete) {
+      initCanvas();
+    } else {
+      sourceImg.onload = initCanvas;
+    }
   }
 });
