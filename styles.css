@@ -206,27 +206,6 @@ section {
   --logo-color-primary: var(--carbon);
 }
 
-/* Logo PNG Real */
-.brand-logo-img {
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  transition: opacity var(--transition-fast);
-  display: block;
-}
-
-/* Versión del logo sobre fondos oscuros (footer, contacto) — invierte el color a blanco */
-.brand-logo-img--white {
-  width: 36px;
-  height: 36px;
-  filter: brightness(0) invert(1);
-  opacity: 0.92;
-}
-
-.brand-logo-container:hover .brand-logo-img {
-  opacity: 0.75;
-}
-
 /* Logotipos Temáticos por Sección */
 .split-brand-logo-hogar {
   --logo-color-primary: var(--verde-sage);
