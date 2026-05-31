@@ -197,13 +197,41 @@ section {
 .brand-logo-container {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  --logo-color-primary: var(--logo-color-default-primary);
-  --logo-color-secondary: var(--logo-color-default-secondary);
+  justify-content: center;
+  text-decoration: none;
 }
 
-.brand-logo-container:hover {
-  --logo-color-primary: var(--carbon);
+/* Nuevo Logotipo PNG Real con Símbolo + Texto Integrados */
+.brand-logo-img {
+  height: 52px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity var(--transition-fast);
+  display: block;
+}
+
+/* En la barra de navegación queremos que sea un poco más compacto y centrado */
+.navbar-container .brand-logo-img {
+  height: 54px;
+}
+
+/* Versión del logo sobre fondos oscuros (footer, contacto): Inversión completa a blanco */
+.brand-logo-img--white {
+  height: 60px;
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+}
+
+/* Versión en miniatura para el badge */
+.brand-logo-img--small {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  margin-right: 4px;
+}
+
+.brand-logo-container:hover .brand-logo-img {
+  opacity: 0.8;
 }
 
 /* Logotipos Temáticos por Sección */
